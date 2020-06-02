@@ -1,2 +1,15 @@
 # RoReplicate
-A set of ModuleScritps for use in creating a plugin which utilizes widget to copy the roblox theme.
+A set of GUI ModuleScripts which make the process of developing a plugin which blends in with the default Roblox Studio feel easier.
+
+## Overview
+Uses PluginGuis to make your plugin hosted in dockable widgets (as opposed to being in the 3D viewport).
+
+RoReplicate is compatibable and built to work with StudioWidgets, although not necessary to run.
+
+## Contributions
+We are currently not accepting any contributions to this library as it is still being developed, when it is released there will be open contribution available. Any merge requests will be automatically declined as of now.
+
+## Coding Conventions
+Class and function names are CamelCase.
+Variable and member names are camelCase.
+Members and methods of starting with "_" are considered private, and should not be accessed outside the class. This is to prevent any confusion when using dot notation to obtain information (distinguishing between a child of a class, versus a property of a class), and any properties should instead be obtained using any of the appropriate methods.
