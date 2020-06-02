@@ -1,5 +1,5 @@
 # RoReplicate
-A set of GUI ModuleScripts which make the process of developing a plugin which blends in with the default Roblox Studio feel easier.
+A set of ModuleScripts for utilization in easier plugin creation, which blends in with the default Roblox Studio look.
 
 ## Overview
 Uses PluginGuis to make your plugin hosted in dockable widgets (as opposed to being in the 3D viewport).
