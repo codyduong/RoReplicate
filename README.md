@@ -2,9 +2,8 @@
 A set of ModuleScripts for utilization in easier plugin creation, which blends in with the default Roblox Studio look.
 
 ## Overview
-Uses PluginGuis to make your plugin hosted in dockable widgets (as opposed to being in the 3D viewport).
-
-RoReplicate is compatibable and built to work with StudioWidgets, although not necessary to run.
+Uses PluginGuis to make your plugin hosted in dockable widgets. Mostly being developed for personal plugin development, however
+it is posted here just in case anyone else finds it useful.
 
 ## Contributions
 We are currently not accepting any contributions to this library as it is still being developed, when it is released there will be open contribution available. Any merge requests will be automatically declined as of now.
