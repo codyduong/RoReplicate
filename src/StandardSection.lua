@@ -58,7 +58,7 @@ function Section:_CreateBottomFrame(titleText)
 	local frame = Instance.new("Frame")
 	--frame.Name --tbd if necessary?
 	frame.Parent = self._frame
-	RoReplicateUtility.syncBackgroundColor(frame)
+	--RoReplicateUtility.syncBackgroundColor3(frame)
 	frame.Size = UDim2.new(1,0,.2,0) --X full, 20% of Y
 	frame.Position = UDim2.new(.5,0,.9,0) --Midpoints of Size
 	frame.BackgroundTransparency = 1
