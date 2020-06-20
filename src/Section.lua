@@ -1,9 +1,5 @@
 local RoReplicateUtility = require(script.Parent.RoReplicateUtility)
-
---[[
-TBD: whether this class will be absorbed under RoReplicateBase, as no user has any need to create a 
-StandaradSectionClass without just manipulating it through RoReplciateBase instead.
---]]
+local TestService = game:GetService("TestService")
 
 Section = {}
 
