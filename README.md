@@ -5,6 +5,9 @@ A set of ModuleScripts for utilization in easier plugin creation, which blends i
 Uses PluginGuis to make your plugin hosted in dockable widgets. Mostly being developed for personal plugin development, however
 it is posted here just in case anyone else finds it useful.
 
+#### Using RoReplicate
+Currently the only documentation is inside the ModuleScripts themselves. There will be no documentation for usage on this README.md until a later and more complete version.
+
 ## Contributions
 We are currently not accepting any contributions to this library as it is still being developed, when it is released there will be open contribution available. Any merge requests will be automatically declined as of now.
 
