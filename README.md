@@ -22,7 +22,7 @@ I don't know why'd you want to install an unfinished product, but here you go:
 Install through the following steps:
 
 1. Enable HTTP Requests in Game Settings in your Roblox Studio (Home►GameSettings►Options►Allow HTTP Requests)
-2. Paste the following command in your commandbar, it will replicate this Repo src into your game.Workspace
+2. Paste the following command in your commandbar, it will replicate this Repo's src into your game.Workspace
 ```lua
 local http = game:GetService("HttpService")
 local req = http:GetAsync("https://api.github.com/repos/Cody-Duong/RoReplicate/contents/src")
