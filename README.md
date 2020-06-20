@@ -1,5 +1,3 @@
-THIS PROJECT IS CURRENTLY ON HOLD.
-
 # RoReplicate
 A set of ModuleScripts for utilization in easier plugin creation, which blends in with the default Roblox Studio look.
 
