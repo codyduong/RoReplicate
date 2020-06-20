@@ -3,11 +3,11 @@ local TestService = game:GetService("TestService")
 RoReplicateUtility = {}
 
 function RoReplicateUtility:syncBackgroundColor3(gui)
-	gui.BackgroundColor3 = Enum.StudioStyleGuideColor.MainBackground
+	gui.BackgroundColor3 = settings().Studio.Theme:GetColor(Enum.StudioStyleGuideColor.MainBackground)
 end
 
 function RoReplicateUtility:syncTextColor3(gui)
-	gui.TextColor3 = Enum.StudioStyleGuideColor.ButtonText
+	gui.TextColor3 = settings().Studio.Theme:GetColor(Enum.StudioStyleGuideColor.ButtonText)
 end
 
 return RoReplicateUtility
