@@ -1,17 +1,17 @@
 local RoReplicateUtility = require(script.Parent.RoReplicateUtility)
 local TestService = game:GetService("TestService")
 
-Section = {}
-Section.__index = Section
+SectionClass = {}
+SectionClass.__index = SectionClass
 
 --[[
 - Creates a singular section class
-- @param nameSuffix - string which describes the section, not shown on UI
+- @param nameSuffix - string which describes the section, interal tracking? May be deprecated soon.
 - @param titleText - string which describes the section, shown on UI
 --]]
-function Section.new(nameSuffix, titleText)
+function SectionClass.new(nameSuffix, titleText)
 	local self = {}
-	setmetatable(self, Section)
+	setmetatable(self, SectionClass)
 	
 	self.layoutOrder = 1
 	
@@ -43,7 +43,7 @@ end
 - Adds a Button Class to this section.
 - @param Button - Button Class.
 --]]
-function Section:AddButton(Button)
+function SectionClass:AddButton(Button)
 	self._buttons = table.insert(self._buttons, #self._buttons+1, Button)
 end
 
@@ -51,7 +51,7 @@ end
 - TBD
 -
 --]]
-function Section:_CreateBottomFrame(titleText)
+function SectionClass:_CreateBottomFrame(titleText)
 	local frame = Instance.new("Frame")
 	--frame.Name --tbd if necessary?
 	frame.Parent = self._frame
@@ -105,4 +105,4 @@ function Section:GetContentsFrame()
 	return self._contentsFrame
 end]]
 
-return Section
+return SectionClass
