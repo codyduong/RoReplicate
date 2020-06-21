@@ -2,6 +2,7 @@ local RoReplicateUtility = require(script.Parent.RoReplicateUtility)
 local TestService = game:GetService("TestService")
 
 Section = {}
+Section.__index = Section
 
 --[[
 - Creates a singular section class
