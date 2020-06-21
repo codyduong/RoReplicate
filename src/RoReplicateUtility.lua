@@ -8,12 +8,13 @@ RoReplicateUtility = {}
 --https://developer.roblox.com/en-us/api-reference/enum/StudioStyleGuideModifier
 
 
-function RoReplicateUtility:syncBackgroundColor3(gui)
+function RoReplicateUtility:SyncBackgroundColor3(gui)
 	gui.BackgroundColor3 = settings().Studio.Theme:GetColor(Enum.StudioStyleGuideColor.MainBackground)
 end
 
-function RoReplicateUtility:syncTextColor3(gui)
+function RoReplicateUtility:SyncTextColor3(gui)
 	gui.TextColor3 = settings().Studio.Theme:GetColor(Enum.StudioStyleGuideColor.ButtonText)
 end
 
 return RoReplicateUtility
+

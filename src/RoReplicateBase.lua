@@ -15,7 +15,7 @@ function RoReplicateBaseClass.new(pluginName, pluginInfo)
 	setmetatable(self, RoReplicateBaseClass)
 	
 	local frame = Instance.new("Frame")
-	RoReplicateUtility:syncBackgroundColor3(frame)
+	RoReplicateUtility:SyncBackgroundColor3(frame)
 	--frame. I have no idea where this mutilated code came from. todo fix?
 	self._frame = frame
 	
