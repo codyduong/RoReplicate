@@ -3,6 +3,7 @@ local Section = require(script.Parent.Section)
 local TestService = game:GetService("TestService")
 
 RoReplicateBaseClass = {}
+RoReplicateBaseClass.__index = RoReplicateBaseClass
 
 --[[ 
 - Creates a new RoReplicateBaseClass.
@@ -14,7 +15,7 @@ function RoReplicateBaseClass.new(pluginInfo, pluginName)
 	setmetatable(self, RoReplicateBaseClass)
 	
 	local frame = Instance.new("Frame")
-	RoReplicateUtility.syncBackgroundColor(frame)
+	RoReplicateUtility:syncBackgroundColor(frame)
 	frame.
 	self._frame = frame
 	
