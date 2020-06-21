@@ -69,7 +69,7 @@ function SectionClass:_CreateBottomFrame(titleText)
 	textLabel.TextYAlignment = Enum.TextYAlignment.Center
 	--textLabel.TextColor3
 	textLabel.BackgroundTransparency = 1
-	RoReplicateUtility:syncTextColor3(textLabel)
+	RoReplicateUtility:SyncTextColor3(textLabel)
 	
 	return frame
 end
