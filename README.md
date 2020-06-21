@@ -1,5 +1,5 @@
 # RoReplicate
-A set of ModuleScripts for utilization in easier plugin creation, which blends in with the default Roblox Studio look.
+A set of ModuleScripts for utilization in easier plugin creation, which blends in with the default Roblox Studio look. StudioWidgets is planned to be incorportated for ease of use (Rather than say, developing some classes yourself ontop of RoReplicate to achieve the desired look/functionality).
 
 ## Overview
 Uses PluginGuis to make your plugin hosted in dockable widgets. Mostly being developed for personal plugin development, however
