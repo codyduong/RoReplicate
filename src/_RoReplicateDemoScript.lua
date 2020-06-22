@@ -22,9 +22,16 @@ local section_2 = Section.new("2", "Section 2")
 roPlugin:AddSections(section_1, section_2) --This parents it to the BaseClass
 
 --Instantiate any panels you wish to create
-local s1_panel_1 = Panel.new(RoReplicateEnum.Panel.Custom)
+local s1_panel_1 = Panel.new(RoReplicateEnum.Panel.ButtonImageText)
 local s1_panel_2 = Panel.new(RoReplicateEnum.Panel.ButtonImageText)
 section_1:AddPanels(s1_panel_1, s1_panel_2) --This parents it to the BaseClass
+
+
+for i=1, 5 do
+	local panel = Panel.new(RoReplicateEnum.Panel.ButtonImageText)
+	section_2:AddPanels(panel)
+end
+
 
 --This actually creates the pluginWidget,
 --if everything was done right before the next three lines shouldn't be changed at all.
