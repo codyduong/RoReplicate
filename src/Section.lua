@@ -1,23 +1,28 @@
 local RoReplicateUtility = require(script.Parent.RoReplicateUtility)
-local TestService = game:GetService("TestService")
+local RoReplicateEnum = require(script.Parent.RoReplicateEnum)
+local Panel = require(script.Parent.Panel)
+
 
 SectionClass = {}
 SectionClass.__index = SectionClass
 
+
 --[[
 - Creates a singular section class
-- @param nameSuffix - string which describes the section, interal tracking? May be deprecated soon.
+- @param nameSuffix - string which describes the section, interal tracking? May be deprecated soon
 - @param titleText - string which describes the section, shown on UI
 --]]
 function SectionClass.new(nameSuffix, titleText)
+	local nameSuffixAssert = assert(type(nameSuffix) == "string", "Section.new - Parameter 1 is not a string")
+	local titleTextAssert = assert(type(titleText) == "string", "Section.new - Parameter 2 is not a string")
+	
 	local self = {}
 	setmetatable(self, SectionClass)
-	
-	self.layoutOrder = 1
 	
 	local frame = Instance.new("Frame")
 	frame.Name = "Section"..nameSuffix
 	frame.BackgroundTransparency = 1
+	frame.LayoutOrder = 1
 	self._frame = frame
 	
 	local contentsFrame = Instance.new("Frame")
@@ -29,7 +34,8 @@ function SectionClass.new(nameSuffix, titleText)
 	contentsFrame.LayoutOrder = 2
 	self._contentsFrame = contentsFrame
 	
-	self._buttons = {}
+	local arrayPan = {}
+	self._panels = arrayPan
 	
 	--TODO: add uilayoutorder stuff to organize 
 
@@ -39,70 +45,77 @@ function SectionClass.new(nameSuffix, titleText)
 	return self
 end
 
---[[
-- Adds a Button Class to this section.
-- @param Button - Button Class.
---]]
-function SectionClass:AddButton(Button)
-	self._buttons = table.insert(self._buttons, #self._buttons+1, Button)
-end
 
 --[[
-- TBD
--
+- Variadic Function
+- Adds Panel Class(es) to this Section
+- @param ... - Panel Class
+--]]
+function SectionClass:AddPanels(...)
+	local arg = {...}
+	for i=1, #arg do
+		assert(getmetatable(arg[i]) == getmetatable(Panel.new(RoReplicateEnum.Panel.Custom)), "SectionClass:AddPanel - parameter "..i.." is not a PanelClass")
+		if not pcall(function()
+				self._panels = table.insert(self._panels, #self._panels+1, arg[i])	
+			end) 
+		then
+			local arrayPan = {arg[i]}
+			self._panels = arrayPan
+		end
+	end
+end
+
+
+--[[
+- TODO: convert to variadic
+- Removes a Panel Class to this section
+- @param panel - Panel Class
+--]]
+function SectionClass:RemovePanel(panel)
+	local panelRemove = assert(table.find(self._panels, panel))
+	table.remove(self._panels, panelRemove)
+end
+
+
+--[[
+- Sets the LayoutOrder of the frame of the SectionClass
+- @param int - int
+--]]
+function SectionClass:SetLayoutOrder(int)
+	self._frame.LayoutOrder = int
+end
+
+
+--[[
+- TODO
+--]]
+function SectionClass:GetPanels()
+	return self._panels
+end
+
+
+--[[
+- Internal Use
+- @param titleText - string
 --]]
 function SectionClass:_CreateBottomFrame(titleText)
 	local frame = Instance.new("Frame")
-	--frame.Name --tbd if necessary?
 	frame.Parent = self._frame
-	--RoReplicateUtility.syncBackgroundColor3(frame)
 	frame.Size = UDim2.new(1,0,.2,0) --X full, 20% of Y
 	frame.Position = UDim2.new(.5,0,.9,0) --Midpoints of Size
 	frame.BackgroundTransparency = 1
 	
-	local textLabel = Instance.new("TextLabel")
+	local textLabel = Instance.new("TextLabel", frame)
 	textLabel.Name = "title"
-	textLabel.Parent = frame
 	textLabel.Size = UDim2.new(1,0,1,0)
 	textLabel.Position = UDim2.new(.5,0,.5,0)
 	textLabel.TextXAlignment = Enum.TextXAlignment.Center
 	textLabel.TextYAlignment = Enum.TextYAlignment.Center
-	--textLabel.TextColor3
 	textLabel.BackgroundTransparency = 1
 	RoReplicateUtility:SyncTextColor3(textLabel)
 	
 	return frame
 end
 
-
-
---[[
-- Deprecated. Formerly utilized for mass createSection info, deemed unnecessary, as one would have to declare info
-- inside each anyway. Also created some unique reference issues, which was resolved by removing this method.
-- @sectionCount - integer.
---]]--[[
-function Section.createSections(sectionCount)
-	local sections = {}
-	
-	for i=1, sectionCount do
-		local section =  Section.new(i, "lorem ipsum") --this has to be set manually, if user creates with createSection
-		sections[i] = section
-	end
-	
-	return sections
-end]]
-
---[[All mass deprecated, left in just incase I decide to utilize.
-function Section:setTitle(title)
-	self._bottomFrame.title = title
-end
-
-function Section:GetSectionFrame()
-	return self._frame
-end
-
-function Section:GetContentsFrame()
-	return self._contentsFrame
-end]]
 
 return SectionClass
