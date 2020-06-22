@@ -58,13 +58,7 @@ function SectionClass:AddPanels(...)
 	for i=1, #arg do
 		assert(getmetatable(arg[i]) == getmetatable(Panel.new(RoReplicateEnum.Panel.Custom)), "SectionClass:AddPanel - parameter "..i.." is not a PanelClass")
 		arg[i].Parent = self._frame
-		if not pcall(function()
-				self._panels = table.insert(self._panels, #self._panels+1, arg[i])	
-			end) 
-		then
-			local arrayPan = {arg[i]}
-			self._panels = arrayPan
-		end
+		table.insert(self._panels, #self._panels+1, arg[i])	
 	end
 end
 
@@ -78,13 +72,7 @@ function SectionClass:RemovePanel(...)
 	for i=1, #arg do
 		assert(getmetatable(arg[i]) == getmetatable(Panel.new(RoReplicateEnum.Panel.Custom)), "SectionClass:AddPanel - parameter "..i.." is not a PanelClass")
 		arg[i].Parent = nil
-		if not pcall(function()
-				self._panels = table.remove(self._panels, table.find(self._panels, arg[i]))
-			end)
-		then
-			local arrayPan = {}
-			self._panels = arrayPan
-		end
+		table.remove(self._panels, table.find(self._panels, arg[i]))
 	end
 end
 
