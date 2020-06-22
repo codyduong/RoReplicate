@@ -1,9 +1,10 @@
 RoReplicateEnumClass = {}
 RoReplicateEnumClass.__index = RoReplicateEnumClass
-RoReplicateEnumClass.Panel = {}
-RoReplicateEnumClass.Panel.Custom = {}
-RoReplicateEnumClass.Panel.ButtomImageText = {}
 
+
+RoReplicateEnumClass.Panel = {}
+
+RoReplicateEnumClass.Panel.Custom = {}
 
 --[[
 - Internal code used for creating a Custom panel type
@@ -13,11 +14,15 @@ function RoReplicateEnumClass.Panel.Custom()
 end
 
 
+RoReplicateEnumClass.Panel.ButtomImageText = {}
+RoReplicateEnumClass.Panel.ButtomImageText.Enum = {}
+RoReplicateEnumClass.Panel.ButtomImageText.Enum.Style = {}
+
 --[[
 - Internal code used for creating a ButtonImageText panel type
 --]]
-function RoReplicateEnumClass.Panel.ButtomImageText()
-	local frame = Instance.new("Frame")
+function RoReplicateEnumClass.Panel.ButtomImage(gui)
+	local frame = Instance.new("Frame", gui)
 	
 	local textButton = Instance.new("TextButton", frame)
 	
