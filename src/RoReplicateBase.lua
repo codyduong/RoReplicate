@@ -71,13 +71,7 @@ function RoReplicateBaseClass:AddSections(...)
 	for i=1, #arg do
 		assert(getmetatable(arg[i])==getmetatable(Section.new("","")), "RoReplicateBaseClass:AddSection - Parameter "..i.." is not a SectionClass")
 		arg[i]:GetFrame().Parent = self._sectionFrame
-		if not pcall(function()
-				self._sections = table.insert(self._sections, #self._sections+1, arg[i])
-			end)
-		then
-			local arraySect = {arg[i]}
-			self._sections = arraySect
-		end
+		table.insert(self._sections, #self._sections+1, arg[i])
 	end
 end
 
@@ -91,13 +85,7 @@ function RoReplicateBaseClass:RemoveSections(...)
 	for i=1, #arg do
 		assert(getmetatable(arg[i])==getmetatable(Section.new("","")), "RoReplicateBaseClass:AddSection - Parameter "..i.." is not a SectionClass")
 		arg[i]:GetFrame().Parent = nil
-		if not pcall(function()
-				self._sections = table.remove(self._sections, table.find(self._sections, arg[i]))
-			end)
-		then
-			local arraySect = {}
-			self._sections = arraySect
-		end
+		table.remove(self._sections, table.find(self._sections, arg[i]))
 	end
 end 
 
@@ -138,9 +126,12 @@ end
 - Internal use
 --]]
 function RoReplicateBaseClass:_UpdateSize()
-	local total = 0 --TODO
+	local total = UDim2.new(0,0,0,0)
+	for i=1, #self._sections do
+		total += self._sections[i]:GetFrame().Size
+	end
 	
-	local _x = 0 --#of sections * amount of widgets in each + divider size
+	local _x = total.X.Offset
 	local TEMP = 1 --TODO <- remove this ugly thing
 	
 	self._sizeMin = UDim2.new(TEMP, _x, 0, 122) --height is 96-100 pixels at 1920x1080, will have to recalculate for other displays
