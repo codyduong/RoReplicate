@@ -30,4 +30,9 @@ function RoReplicateUtility:SyncBorderColor3(gui)
 end
 
 
+function RoReplicateUtility:SyncFont(gui)
+	gui.Font = settings().Studio.Font
+end
+
+
 return RoReplicateUtility
