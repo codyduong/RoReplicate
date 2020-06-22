@@ -1,8 +1,8 @@
---[[
 RoReplicateEnumClass = {}
 RoReplicateEnumClass.__index = RoReplicateEnumClass
 RoReplicateEnumClass.Panel = {}
 RoReplicateEnumClass.Panel.Custom = {}
+RoReplicateEnumClass.Panel.ButtomImageText = {}
 
 
 --[[
@@ -24,4 +24,3 @@ end
 
 
 return RoReplicateEnumClass
---]]
