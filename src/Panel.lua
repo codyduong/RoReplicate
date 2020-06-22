@@ -36,8 +36,8 @@ end
 
 
 --[[
-- TODO
-- @return frame
+- Returns the frame of the panel for local script manipulation
+- @return frame - Frame Instance
 --]]
 function PanelClass:GetFrame()
 	return self._frame
@@ -45,7 +45,7 @@ end
 
 
 --[[
-- TODO
+- Sets the frame of the panel from any local script manipulation
 --]]
 function PanelClass:SetFrame(frame)
 	assert(getmetatable(frame)==getmetatable(Instance.new("Frame")), "PanelClass:SetFrame - tried to SetFrame to something that is not a Frame Instance")
