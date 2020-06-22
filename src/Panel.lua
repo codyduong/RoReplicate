@@ -11,14 +11,6 @@ PanelClass.__index = PanelClass
 - @Param panelType = type of panel enum
 --]]
 function PanelClass.new(panelType)
-	if pcall(function()
-			panelType()
-		end) 
-	then
-		--print("success")
-	else
-		--print("failure")
-	end
 	
 	local self = {}
 	setmetatable(self, PanelClass)
@@ -26,10 +18,19 @@ function PanelClass.new(panelType)
 	self._type = ""
 	
 	local frame = Instance.new("Frame")
-	--frame.Name = --necessary?
-	frame.BackgroundTransparency = 1
-	frame.LayoutOrder = 1
+	frame.Size = UDim2.new(0,44,0,65)
+	frame.BackgroundTransparency = 0
+	frame.ZIndex = 500
 	self._frame = frame
+	
+	if pcall(function()
+			panelType(self._frame)
+		end) 
+	then
+		--print("success")
+	else
+		--print("failure")
+	end
 	
 	return self
 end
