@@ -95,7 +95,8 @@ end
 
 
 --[[
-- TODO
+- Returns an array of panels for script manipulation elsewhere
+- @return _panels - PanelClass array
 --]]
 function SectionClass:GetPanels()
 	return self._panels
