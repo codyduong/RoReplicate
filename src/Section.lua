@@ -21,17 +21,19 @@ function SectionClass.new(nameSuffix, titleText)
 	
 	local frame = Instance.new("Frame")
 	frame.Name = "Section"..nameSuffix
-	frame.BackgroundTransparency = 1
-	frame.LayoutOrder = 1
+	frame.BackgroundTransparency = 0
+	frame.Size = UDim2.new(0, 512, 1, 0)
+	frame.Position = UDim2.new(0,0,0,1)
+	frame.ZIndex = 100
 	self._frame = frame
 	
-	local contentsFrame = Instance.new("Frame")
+	local contentsFrame = Instance.new("Frame", frame)
 	contentsFrame.Name = "Contents"
-	contentsFrame.BackgroundTransparency = 1
-	contentsFrame.Size = UDim2.new(1, 0, .8, 0) 
+	contentsFrame.BackgroundTransparency = 0
+	contentsFrame.Size = UDim2.new(0, 256, 0, 72) 
 	contentsFrame.Position = UDim2.new(0, 0, 0, 0)
 	contentsFrame.Parent = frame
-	contentsFrame.LayoutOrder = 2
+	contentsFrame.ZIndex = 200
 	self._contentsFrame = contentsFrame
 	
 	local arrayPan = {}
@@ -55,6 +57,7 @@ function SectionClass:AddPanels(...)
 	local arg = {...}
 	for i=1, #arg do
 		assert(getmetatable(arg[i]) == getmetatable(Panel.new(RoReplicateEnum.Panel.Custom)), "SectionClass:AddPanel - parameter "..i.." is not a PanelClass")
+		arg[i].Parent = self._frame
 		if not pcall(function()
 				self._panels = table.insert(self._panels, #self._panels+1, arg[i])	
 			end) 
@@ -71,9 +74,10 @@ end
 - @param ... - Panel Class(es)
 --]]
 function SectionClass:RemovePanel(...)
-	local arg= {...}
+	local arg = {...}
 	for i=1, #arg do
 		assert(getmetatable(arg[i]) == getmetatable(Panel.new(RoReplicateEnum.Panel.Custom)), "SectionClass:AddPanel - parameter "..i.." is not a PanelClass")
+		arg[i].Parent = nil
 		if not pcall(function()
 				self._panels = table.remove(self._panels, table.find(self._panels, arg[i]))
 			end)
@@ -86,6 +90,15 @@ end
 
 
 --[[
+- Returns the current frame
+- @return _frame - frame
+--]]
+function SectionClass:GetFrame()
+	return self._frame
+end
+
+
+--[[TODO FIX to ZIndex
 - Sets the LayoutOrder of the frame of the SectionClass
 - @param int - int
 --]]
@@ -110,18 +123,20 @@ end
 function SectionClass:_CreateBottomFrame(titleText)
 	local frame = Instance.new("Frame")
 	frame.Parent = self._frame
-	frame.Size = UDim2.new(1,0,.2,0) --X full, 20% of Y
-	frame.Position = UDim2.new(.5,0,.9,0) --Midpoints of Size
+	frame.Size = UDim2.new(1,0,0,27) --X full, 20% of Y
+	frame.Position = UDim2.new(0,0,0,72) --Midpoints of Size
 	frame.BackgroundTransparency = 1
+	frame.ZIndex = 300
 	
 	local textLabel = Instance.new("TextLabel", frame)
 	textLabel.Name = "title"
 	textLabel.Size = UDim2.new(1,0,1,0)
-	textLabel.Position = UDim2.new(.5,0,.5,0)
+	textLabel.Position = UDim2.new(0,0,0,0)
 	textLabel.TextXAlignment = Enum.TextXAlignment.Center
 	textLabel.TextYAlignment = Enum.TextYAlignment.Center
 	textLabel.BackgroundTransparency = 1
 	RoReplicateUtility:SyncTextColor3(textLabel)
+	textLabel.ZIndex = 400
 	
 	return frame
 end
