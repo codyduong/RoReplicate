@@ -45,9 +45,8 @@ end
 
 
 --[[
-- Variadic Function
 - Adds section(s) to the RoReplicateBaseClass.
-- @param ... - Section Class
+- @param ... - Section Class(es)
 --]]
 function RoReplicateBaseClass:AddSections(...)
 	local arg = {...}
@@ -62,6 +61,25 @@ function RoReplicateBaseClass:AddSections(...)
 		end
 	end
 end
+
+
+--[[
+- Removes section(s) to the RoReplicateBaseClass.
+- @parma ... - Section Class(es)
+--]]
+function RoReplicateBaseClass:RemoveSections(...)
+	local arg = {...}
+	for i=1, #arg do
+		assert(getmetatable(arg[i])==getmetatable(Section.new("","")), "RoReplicateBaseClass:AddSection - Parameter "..i.." is not a SectionClass")
+		if not pcall(function()
+				self._sections = table.remove(self._sections, table.find(self._sections, arg[i]))
+			end)
+		then
+			local arraySect = {}
+			self._sections = arraySect
+		end
+	end
+end 
 
 
 --[[
