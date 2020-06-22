@@ -1,3 +1,12 @@
+---
+name: Bug/Feature Request
+about: Use this for all general purpose issue posting.
+title: 'ClassName - Line ## - Description'
+labels: ''
+assignees: Cody-Duong
+
+---
+
 ## RoReplicate Bug/Feature Request — 01 January 20XX
 
 ### Request For X.X.X
