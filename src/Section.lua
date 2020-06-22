@@ -1,4 +1,5 @@
 local RoReplicateUtility = require(script.Parent.RoReplicateUtility)
+local RoReplicateEnum = require(script.Parent.RoReplicateEnum)
 local Panel = require(script.Parent.Panel)
 
 
@@ -33,7 +34,8 @@ function SectionClass.new(nameSuffix, titleText)
 	contentsFrame.LayoutOrder = 2
 	self._contentsFrame = contentsFrame
 	
-	self._panels = {}
+	local arrayPan = {}
+	self._panels = arrayPan
 	
 	--TODO: add uilayoutorder stuff to organize 
 
@@ -45,16 +47,27 @@ end
 
 
 --[[
-- Adds a Panel Class to this section
-- @param Panel - Panel Class
+- Variadic Function
+- Adds Panel Class(es) to this Section
+- @param ... - Panel Class
 --]]
-function SectionClass:AddPanel(panel)
-	assert(getmetatable(panel) == getmetatable(Panel.new("Custom")), "SectionClass:AddPanel - parameter 1: panel, is not a Panel Object")
-	self._panels = table.insert(self._panels, #self._panels+1, panel)
+function SectionClass:AddPanels(...)
+	local arg = {...}
+	for i=1, #arg do
+		assert(getmetatable(arg[i]) == getmetatable(Panel.new(RoReplicateEnum.Panel.Custom)), "SectionClass:AddPanel - parameter "..i.." is not a PanelClass")
+		if not pcall(function()
+				self._panels = table.insert(self._panels, #self._panels+1, arg[i])	
+			end) 
+		then
+			local arrayPan = {arg[i]}
+			self._panels = arrayPan
+		end
+	end
 end
 
 
 --[[
+- TODO: convert to variadic
 - Removes a Panel Class to this section
 - @param panel - Panel Class
 --]]
@@ -70,6 +83,14 @@ end
 --]]
 function SectionClass:SetLayoutOrder(int)
 	self._frame.LayoutOrder = int
+end
+
+
+--[[
+- TODO
+--]]
+function SectionClass:GetPanels()
+	return self._panels
 end
 
 
