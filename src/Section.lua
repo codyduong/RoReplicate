@@ -121,8 +121,7 @@ end
 - @param titleText - string
 --]]
 function SectionClass:_CreateBottomFrame(titleText)
-	local frame = Instance.new("Frame")
-	frame.Parent = self._frame
+	local frame = Instance.new("Frame", self._frame)
 	frame.Size = UDim2.new(1,0,0,27) --X full, 20% of Y
 	frame.Position = UDim2.new(0,0,0,72) --Midpoints of Size
 	frame.BackgroundTransparency = 1
