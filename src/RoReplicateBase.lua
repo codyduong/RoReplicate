@@ -25,7 +25,7 @@ function RoReplicateBaseClass.new(pluginName, pluginInfo)
 	--frame. I have no idea where this mutilated code came from. todo fix?
 	self._frame = frame
 	
-	local arraySect = {} -- arrays are being funky :( TODO fix
+	local arraySect = {}
 	self._sections = arraySect
 	
 	self._pluginName = pluginName
@@ -45,12 +45,22 @@ end
 
 
 --[[
-- Adds a section to the RoReplicateBaseClass.
-- @param section - Section Class Object.
+- Variadic Function
+- Adds section(s) to the RoReplicateBaseClass.
+- @param ... - Section Class
 --]]
-function RoReplicateBaseClass:AddSection(section)
-	assert(getmetatable(section)==getmetatable(Section.new("","")), "RoReplicateBaseClass:AddSection - Parameter 1 is not a SectionClass Object")
-	self.sections = table.insert(self._sections, #self._sections+1, section)
+function RoReplicateBaseClass:AddSections(...)
+	local arg = {...}
+	for i=1, #arg do
+		assert(getmetatable(arg[i])==getmetatable(Section.new("","")), "RoReplicateBaseClass:AddSection - Parameter "..i.." is not a SectionClass")
+		if not pcall(function()
+				self._sections = table.insert(self._sections, #self._sections+1, arg[i])
+			end)
+		then
+			local arraySect = {arg[i]}
+			self._sections = arraySect
+		end
+	end
 end
 
 
@@ -90,7 +100,7 @@ end
 - Internal use
 --]]
 function RoReplicateBaseClass:_UpdateSize()
-	local sectLength = #self._sections
+	local total = 0 --TODO
 	
 	local _x = 0 --#of sections * amount of widgets in each + divider size
 	local TEMP = 1 --TODO <- remove this ugly thing
