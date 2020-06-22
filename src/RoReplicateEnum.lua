@@ -6,19 +6,20 @@ RoReplicateEnumClass.Panel.ButtomImageText = {}
 
 
 --[[
-- Internal code used for creating a Custom panel type
+- TODO
+-
 --]]
 function RoReplicateEnumClass.Panel.Custom()
-  --this is purposely left empty, used for assertations moreso than anything
+
 end
 
 
 --[[
-- Internal code used for creating a ButtonImageText panel type
+- TODO
+-
 --]]
-function RoReplicateEnumClass.Panel.ButtomImageText()
-  local frame = Instance.new("Frame")
-  --TODO
+function RoReplicateEnumClass.Panel.ButtonImgageText()
+
 end
 
 
