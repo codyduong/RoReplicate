@@ -34,10 +34,28 @@ function RoReplicateBaseClass.new(pluginName, pluginInfo)
 	self._sizeMin = UDim2.new(0,0,0,0)
 	self._sizeMax = UDim2.new(0,0,0,0)
 	
-	local uiListLayout = Instance.new("UIListLayout", frame)
-	uiListLayout.Padding = UDim.new(1,4)
+	local topFrame = Instance.new("Frame", frame)
+	topFrame.Size = UDim2.new(1,0,0,23)
+	topFrame.Position = UDim2.new(0,0,0,0)
+	topFrame.BorderSizePixel = 1
+	RoReplicateUtility:SyncBorderColor3(topFrame)
+	RoReplicateUtility:SyncTitlebar(topFrame)
+	
+	--TODO topFrame uiListLayout
+	
+	local sectionFrame = Instance.new("Frame", frame)
+	sectionFrame.Size = UDim2.new(1,0,0,99)
+	sectionFrame.Position = UDim2.new(0,0,0,23)
+	sectionFrame.BackgroundTransparency = .5
+	sectionFrame.ZIndex = 0
+	self._sectionFrame = sectionFrame
+	
+	
+	local uiListLayout = Instance.new("UIListLayout", sectionFrame)
+	uiListLayout.Padding = UDim.new(0,0)
 	uiListLayout.FillDirection = Enum.FillDirection.Horizontal
 	uiListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	uiListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Left
 	uiListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
 	
 	return self
@@ -52,6 +70,7 @@ function RoReplicateBaseClass:AddSections(...)
 	local arg = {...}
 	for i=1, #arg do
 		assert(getmetatable(arg[i])==getmetatable(Section.new("","")), "RoReplicateBaseClass:AddSection - Parameter "..i.." is not a SectionClass")
+		arg[i]:GetFrame().Parent = self._sectionFrame
 		if not pcall(function()
 				self._sections = table.insert(self._sections, #self._sections+1, arg[i])
 			end)
@@ -71,6 +90,7 @@ function RoReplicateBaseClass:RemoveSections(...)
 	local arg = {...}
 	for i=1, #arg do
 		assert(getmetatable(arg[i])==getmetatable(Section.new("","")), "RoReplicateBaseClass:AddSection - Parameter "..i.." is not a SectionClass")
+		arg[i]:GetFrame().Parent = nil
 		if not pcall(function()
 				self._sections = table.remove(self._sections, table.find(self._sections, arg[i]))
 			end)
@@ -123,9 +143,9 @@ function RoReplicateBaseClass:_UpdateSize()
 	local _x = 0 --#of sections * amount of widgets in each + divider size
 	local TEMP = 1 --TODO <- remove this ugly thing
 	
-	self._sizeMin = UDim2.new(TEMP, _x, 0, 100) --height is 96-100 pixels at 1920x1080, will have to recalculate for other displays
+	self._sizeMin = UDim2.new(TEMP, _x, 0, 122) --height is 96-100 pixels at 1920x1080, will have to recalculate for other displays
 	
-	self._sizeDef = UDim2.new(TEMP, _x, 0, 100)
+	self._sizeDef = UDim2.new(TEMP, _x, 0, 122)
 end
 
 
