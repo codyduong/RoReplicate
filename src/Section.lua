@@ -49,7 +49,7 @@ end
 --[[
 - Variadic Function
 - Adds Panel Class(es) to this Section
-- @param ... - Panel Class
+- @param ... - Panel Class(es)
 --]]
 function SectionClass:AddPanels(...)
 	local arg = {...}
@@ -67,13 +67,21 @@ end
 
 
 --[[
-- TODO: convert to variadic
-- Removes a Panel Class to this section
-- @param panel - Panel Class
+- Removes Panel Class(es) to this Section
+- @param ... - Panel Class(es)
 --]]
-function SectionClass:RemovePanel(panel)
-	local panelRemove = assert(table.find(self._panels, panel))
-	table.remove(self._panels, panelRemove)
+function SectionClass:RemovePanel(...)
+	local arg= {...}
+	for i=1, #arg do
+		assert(getmetatable(arg[i]) == getmetatable(Panel.new(RoReplicateEnum.Panel.Custom)), "SectionClass:AddPanel - parameter "..i.." is not a PanelClass")
+		if not pcall(function()
+				self._panels = table.remove(self._panels, table.find(self._panels, arg[i]))
+			end)
+		then
+			local arrayPan = {}
+			self._panels = arrayPan
+		end
+	end
 end
 
 
