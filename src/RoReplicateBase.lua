@@ -19,6 +19,9 @@ function RoReplicateBaseClass.new(pluginName, pluginInfo)
 	local self = {}
 	setmetatable(self, RoReplicateBaseClass)
 	
+	self._pluginName = pluginName
+	self._tempPluginInfo = pluginInfo
+	
 	local frame = Instance.new("Frame")
 	RoReplicateUtility:SyncBackgroundColor3(frame)
 	frame.Size = UDim2.new(1,0,1,0)
@@ -28,34 +31,28 @@ function RoReplicateBaseClass.new(pluginName, pluginInfo)
 	local arraySect = {}
 	self._sections = arraySect
 	
-	self._pluginName = pluginName
-	self._tempPluginInfo = pluginInfo
-	
 	self._sizeMin = UDim2.new(0,0,0,0)
 	self._sizeMax = UDim2.new(0,0,0,0)
 	
 	local topFrame = Instance.new("Frame", frame)
-	topFrame.Size = UDim2.new(1,0,0,23)
-	topFrame.Position = UDim2.new(0,0,0,0)
-	topFrame.BorderSizePixel = 1
-	RoReplicateUtility:SyncBorderColor3(topFrame)
 	RoReplicateUtility:SyncTitlebar(topFrame)
+	topFrame.Position = UDim2.new(0,0,0,0)
+	topFrame.Size = UDim2.new(1,0,0,23)
+	topFrame.BorderSizePixel = 1
 	
 	--TODO topFrame uiListLayout
 	
 	local sectionFrame = Instance.new("Frame", frame)
-	sectionFrame.Size = UDim2.new(1,0,0,98)
+	sectionFrame.BackgroundTransparency = 1
 	sectionFrame.Position = UDim2.new(0,0,0,24)
-	sectionFrame.BackgroundTransparency = .5
-	sectionFrame.ZIndex = 0
+	sectionFrame.Size = UDim2.new(1,0,0,98)
 	self._sectionFrame = sectionFrame
-	
 	
 	local uiListLayout = Instance.new("UIListLayout", sectionFrame)
 	uiListLayout.Padding = UDim.new(0,0)
 	uiListLayout.FillDirection = Enum.FillDirection.Horizontal
-	uiListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	uiListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Left
+	uiListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	uiListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
 	
 	return self
