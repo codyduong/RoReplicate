@@ -15,8 +15,8 @@ function PanelClass.new(enum, Section)
 	setmetatable(self, PanelClass)
 	
 	local frame = Instance.new("Frame")
-	frame.BackgroundTransparency = 1
-	frame.Size = UDim2.new(0,44,0,65)
+	frame.BackgroundTransparency = 0
+	frame.Size = UDim2.new(0,44,0,67)
 	self._frame = frame
 	
 	self:_CheckEnum(enum)
@@ -91,6 +91,7 @@ function PanelClass.Enum.ButtonImage.new(gui)
 	
 	local imageButton = Instance.new("ImageButton", frame)
 	RoReplicateUtility:SyncBackgroundColor3(imageButton)
+	imageButton.BorderSizePixel = 0
 	imageButton.Position = UDim2.new(0,0,0,0)
 	imageButton.Size = UDim2.new(0,44,0,35)
 	
@@ -102,6 +103,7 @@ function PanelClass.Enum.ButtonImage.new(gui)
 	--textButton.LineHeight = 6
 	textButton.Text = "wew"
 	RoReplicateUtility:SyncTextColor3(textButton)
+	textButton.BorderSizePixel = 0
 	textButton.TextSize = 6
 	textButton.TextXAlignment = Enum.TextXAlignment.Center
 	textButton.TextYAlignment = Enum.TextYAlignment.Center
