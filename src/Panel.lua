@@ -8,9 +8,9 @@ PanelClass.__index = PanelClass
 
 --[[
 - Creates a new panel
-- @param panelType = type of panel enum
+- @param tuple - PanelType (tuple varies from paneltype to paneltype)
 --]]
-function PanelClass.new(panelType)
+function PanelClass.new(enum, Section)
 	local self = {}
 	setmetatable(self, PanelClass)
 	
@@ -19,7 +19,13 @@ function PanelClass.new(panelType)
 	frame.Size = UDim2.new(0,44,0,65)
 	self._frame = frame
 	
-	self:_CheckParam(panelType)
+	self:_CheckEnum(enum)
+	
+	pcall(
+		function()
+			Section:AddPanels(self)
+		end
+	)
 	
 	return self
 end
@@ -38,42 +44,76 @@ end
 - Sets the frame of the panel from any local script manipulation
 --]]
 function PanelClass:SetFrame(frame)
-	assert(getmetatable(frame)==getmetatable(Instance.new("Frame")), "PanelClass:SetFrame - tried to SetFrame to something that is not a Frame Instance")
+	assert(getmetatable(frame) == getmetatable(Instance.new("Frame")), "PanelClass:SetFrame - tried to SetFrame to something that is not a Frame Instance")
 	self._frame = frame
 end
 
 
 PanelClass.Enum = {}
 
-
 --[[
 - TODO
 --]]
-function PanelClass:_CheckParam(param)
+function PanelClass:_CheckEnum(enum)
 	if not pcall(
 		function()
-			param(self._frame)
-		end) 
-	then
-		error("yea",script,1) --TODO fix
+			enum.new(self._frame)
+	end) then
+		print("fail") -- <-- fix this
 	end
 end
 
 
---[[
-- TODO
---]]
-function PanelClass.Enum.ButtonImage(gui)
+PanelClass.Enum.CustomInput = {}
+PanelClass.Enum.CustomInput.__index = {}
+
+function PanelClass.Enum.CustomInput.new(gui)
+	local self = {}
+	setmetatable(self, PanelClass.Enum.ButtonImage)
+	
+	return self
+end
+
+
+PanelClass.Enum.ButtonImage = {}
+PanelClass.Enum.ButtonImage.__index = {}
+
+function PanelClass.Enum.ButtonImage.new(gui)
+	local self = {}
+	setmetatable(self, PanelClass.Enum.ButtonImage)
+	
 	local frame = Instance.new("Frame", gui)
+	frame.BackgroundTransparency = 1
 	--RoReplicateUtility:SyncBackgroundColor3(frame)
 	RoReplicateUtility:SyncBorderColor3(frame)
 	frame.Size = UDim2.new(1,0,1,0)
-	
-	local textButton = Instance.new("TextButton", frame)
+	frame.Name = "ButtonImageFrame"
 	
 	local imageButton = Instance.new("ImageButton", frame)
+	RoReplicateUtility:SyncBackgroundColor3(imageButton)
+	imageButton.Position = UDim2.new(0,0,0,0)
+	imageButton.Size = UDim2.new(0,44,0,35)
+	
+	--imageButton.Name = "ImageButton"
+	
+	
+	local textButton = Instance.new("TextButton", frame)
+	--textButton.Font = ""
+	--textButton.LineHeight = 6
+	textButton.Text = "wew"
+	RoReplicateUtility:SyncTextColor3(textButton)
+	textButton.TextSize = 6
+	textButton.TextXAlignment = Enum.TextXAlignment.Center
+	textButton.TextYAlignment = Enum.TextYAlignment.Center
+	RoReplicateUtility:SyncBackgroundColor3(textButton)
+	textButton.Position = UDim2.new(0,0,0,36)
+	textButton.Size = UDim2.new(0,44,0,31)
+	
+	--textButton.Name = "TextButton"
+	
+	
+	return self
 end
-
 
 
 return PanelClass

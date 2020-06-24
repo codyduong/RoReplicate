@@ -17,19 +17,16 @@ local pluginInfo = DockWidgetPluginGuiInfo.new(
 local roPlugin = RoReplicateBase.new("RoPlugin", pluginInfo)
 
 --Instantiate any sections you wish to create
-local section_1 = Section.new("1", "Section 1")
-local section_2 = Section.new("2", "Section 2")
-roPlugin:AddSections(section_1, section_2) --This parents it to the BaseClass
+local section_1 = Section.new("1", "Section 1", roPlugin)
+local section_2 = Section.new("2", "Section 2", roPlugin)
+--roPlugin:AddSections(section_1, section_2) --This parents it to the BaseClass
 
---Instantiate any panels you wish to create
-local s1_panel_1 = Panel.new(Panel.Enum.ButtonImage)
-local s1_panel_2 = Panel.new(Panel.Enum.ButtonImage)
-section_1:AddPanels(s1_panel_1, s1_panel_2) --This parents it to the BaseClass
+local s1_panel_1 = Panel.new(Panel.Enum.ButtonImage, section_1)
+local s1_panel_2 = Panel.new(Panel.Enum.ButtonImage, section_1)
+--section_1:AddPanels(s1_panel_1, s1_panel_2) --This parents it to the BaseClass
 
-
-for i=1, 5 do
-	local panel = Panel.new(Panel.Enum.ButtonImage)
-	section_2:AddPanels(panel)
+for i=1, 4 do
+	local panel = Panel.new(Panel.Enum.ButtonImage, section_2)
 end
 
 

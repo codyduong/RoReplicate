@@ -36,4 +36,5 @@ RoReplicateEnumClass.__index = RoReplicateEnumClass
 --	print("woot")
 --end
 ----]]
+
 return RoReplicateEnumClass

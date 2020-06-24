@@ -42,13 +42,13 @@ function RoReplicateBaseClass.new(pluginName, pluginInfo)
 	
 	--TODO topFrame uiListLayout
 	
-	local sectionFrame = Instance.new("Frame", frame)
-	sectionFrame.BackgroundTransparency = 1
-	sectionFrame.Position = UDim2.new(0,0,0,24)
-	sectionFrame.Size = UDim2.new(1,0,0,98)
-	self._sectionFrame = sectionFrame
+	local sectionContentsFrame = Instance.new("Frame", frame)
+	sectionContentsFrame.BackgroundTransparency = 1
+	sectionContentsFrame.Position = UDim2.new(0,0,0,24)
+	sectionContentsFrame.Size = UDim2.new(1,0,0,98)
+	self._sectionContentsFrame = sectionContentsFrame
 	
-	local uiListLayout = Instance.new("UIListLayout", sectionFrame)
+	local uiListLayout = Instance.new("UIListLayout", sectionContentsFrame)
 	uiListLayout.Padding = UDim.new(0,0)
 	uiListLayout.FillDirection = Enum.FillDirection.Horizontal
 	uiListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Left
@@ -67,7 +67,7 @@ function RoReplicateBaseClass:AddSections(...)
 	local arg = {...}
 	for i=1, #arg do
 		assert(getmetatable(arg[i])==getmetatable(Section.new("","")), "RoReplicateBaseClass:AddSection - Parameter "..i.." is not a SectionClass")
-		arg[i]:GetFrame().Parent = self._sectionFrame
+		arg[i]:GetFrame().Parent = self._sectionContentsFrame
 		table.insert(self._sections, #self._sections+1, arg[i])
 	end
 end
@@ -116,6 +116,22 @@ end
 --]]
 function RoReplicateBaseClass:PluginRun(actualP)
 	self._frame.Parent = actualP
+end
+
+
+--[[
+- TODO
+--]]
+function RoReplicateBaseClass:GetFrame()
+	return self._frame
+end
+
+
+--[[
+- TODO
+--]]
+function RoReplicateBaseClass:GetSectionContentsFrame()
+	return self._sectionContentsFrame
 end
 
 

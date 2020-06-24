@@ -12,7 +12,7 @@ SectionClass.__index = SectionClass
 - @param nameSuffix - string which describes the section, interal tracking? May be deprecated soon
 - @param titleText - string which describes the section, shown on UI
 --]]
-function SectionClass.new(nameSuffix, titleText)
+function SectionClass.new(nameSuffix, titleText, RoReplicateBase)
 	local nameSuffixAssert = assert(type(nameSuffix) == "string", "Section.new - Parameter 1 is not a string")
 	local titleTextAssert = assert(type(titleText) == "string", "Section.new - Parameter 2 is not a string")
 	
@@ -44,6 +44,12 @@ function SectionClass.new(nameSuffix, titleText)
 
 	local bottomFrame = self:_CreateBottomFrame(titleText)
 	self._bottomFrame = bottomFrame
+	
+	pcall(
+		function()
+			RoReplicateBase:AddSections(self)
+		end
+	)
 	
 	return self
 end
