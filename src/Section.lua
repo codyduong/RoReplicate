@@ -1,5 +1,4 @@
 local RoReplicateUtility = require(script.Parent.RoReplicateUtility)
-local RoReplicateEnum = require(script.Parent.RoReplicateEnum)
 local Panel = require(script.Parent.Panel)
 
 
@@ -24,11 +23,14 @@ function SectionClass.new(nameSuffix, titleText, RoReplicateBase)
 	frame.Position = UDim2.new(0,0,0,0)
 	frame.Size = UDim2.new(0, 0, 1, 0)
 	self._frame = frame
+
+	local bottomFrame = self:_CreateBottomFrame(titleText)
+	self._bottomFrame = bottomFrame
 	
 	local contentsFrame = Instance.new("Frame", frame)
 	contentsFrame.BackgroundTransparency = 1
-	contentsFrame.Position = UDim2.new(0, 4, 0, 1)
-	contentsFrame.Size = UDim2.new(0, 0, 0, 72) 
+	contentsFrame.Position = UDim2.new(0, 4, 0, 2)
+	contentsFrame.Size = UDim2.new(0, 0, 0, 0) 
 	self._contentsFrame = contentsFrame
 	
 	local arrayPan = {}
@@ -39,11 +41,8 @@ function SectionClass.new(nameSuffix, titleText, RoReplicateBase)
 	uiListLayout.FillDirection = Enum.FillDirection.Horizontal
 	uiListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Left
 	uiListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-	uiListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+	--uiListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
 	self._uiListLayout = uiListLayout
-
-	local bottomFrame = self:_CreateBottomFrame(titleText)
-	self._bottomFrame = bottomFrame
 	
 	pcall(
 		function()

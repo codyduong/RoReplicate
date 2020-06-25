@@ -45,7 +45,7 @@ function RoReplicateBaseClass.new(pluginName, pluginInfo)
 	local sectionContentsFrame = Instance.new("Frame", frame)
 	sectionContentsFrame.BackgroundTransparency = 1
 	sectionContentsFrame.Position = UDim2.new(0,0,0,24)
-	sectionContentsFrame.Size = UDim2.new(1,0,0,98)
+	sectionContentsFrame.Size = UDim2.new(1,0,1,0)
 	self._sectionContentsFrame = sectionContentsFrame
 	
 	local uiListLayout = Instance.new("UIListLayout", sectionContentsFrame)

@@ -2,7 +2,6 @@
 local RoReplicate = script.Parent
 local RoReplicateBase = require(RoReplicate.RoReplicateBase)
 local RoReplicateUtility = require(RoReplicate.RoReplicateUtility)
-local RoReplicateEnum = require(RoReplicate.RoReplicateEnum)
 local Section = require(RoReplicate.Section)
 local Panel = require(RoReplicate.Panel)
 
@@ -35,4 +34,6 @@ end
 --just copy&paste
 local yourPlugin = plugin:CreateDockWidgetPluginGui(roPlugin:ReturnPlugin()) 
 yourPlugin.Title = roPlugin:ReturnPlugin()
+local Replicate = roPlugin:GetFrame():Clone()
+Replicate.Parent = workspace
 roPlugin:PluginRun(yourPlugin)
