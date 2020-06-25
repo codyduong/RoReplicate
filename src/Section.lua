@@ -1,5 +1,4 @@
 local RoReplicateUtility = require(script.Parent.RoReplicateUtility)
-local RoReplicateEnum = require(script.Parent.RoReplicateEnum)
 local Panel = require(script.Parent.Panel)
 
 
