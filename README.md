@@ -1,4 +1,4 @@
-# RoReplicate 0.2.8
+# RoReplicate 0.2.9
 A set of ModuleScripts for utilization in easier plugin creation, which blends in with the default Roblox Studio look. StudioWidgets is planned to be incorportated for ease of use (Rather than say, developing some classes yourself ontop of RoReplicate to achieve the desired look/functionality).
 
 ## Overview
