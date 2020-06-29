@@ -37,6 +37,7 @@ for i = 1, #json do
 	if (file.type == "file") then
 		local name = file.name:sub(1, #file.name-4)
 		local module = targetFolder:FindFirstChild(name) or Instance.new("ModuleScript")
+		if name == _RoReplicateDemoScript then module = Instance.new("Script") end
 		module.Name = name
 		module.Source = http:GetAsync(file.download_url)
 		module.Parent = targetFolder
