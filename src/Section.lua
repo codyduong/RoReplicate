@@ -1,5 +1,5 @@
 local RoReplicateUtility = require(script.Parent.RoReplicateUtility)
-local Panel = require(script.Parent.Panel)
+local Input = require(script.Parent.Input)
 
 
 SectionClass = {}
@@ -33,8 +33,8 @@ function SectionClass.new(nameSuffix, titleText, RoReplicateBase)
 	contentsFrame.Size = UDim2.new(0, 0, 0, 0) 
 	self._contentsFrame = contentsFrame
 	
-	local arrayPan = {}
-	self._panels = arrayPan
+	local inputPan = {}
+	self._inputs = inputPan
 	
 	local uiListLayout = Instance.new("UIListLayout", contentsFrame)
 	uiListLayout.Padding = UDim.new(0,4)
@@ -55,30 +55,30 @@ end
 
 
 --[[
-- Adds Panel Class(es) to this Section
-- @param ... - Panel Class(es)
+- Adds Input Class(es) to this Section
+- @param ... - Input Class(es)
 --]]
-function SectionClass:AddPanels(...)
+function SectionClass:AddInputs(...)
 	local arg = {...}
 	for i=1, #arg do
-		assert(true, "SectionClass:AddPanel - parameter "..i.." is not a PanelClass") --TODO ASSERTATION
+		assert(true, "SectionClass:AddInput - parameter "..i.." is not a InputClass") --TODO ASSERTATION
 		arg[i]:GetFrame().Parent = self._contentsFrame
-		table.insert(self._panels, #self._panels+1, arg[i])	
+		table.insert(self._inputs, #self._inputs+1, arg[i])	
 	end
 	self:_UpdateSize()
 end
 
 
 --[[
-- Removes Panel Class(es) to this Section
-- @param ... - Panel Class(es)
+- Removes Input Class(es) to this Section
+- @param ... - Input Class(es)
 --]]
-function SectionClass:RemovePanel(...)
+function SectionClass:RemoveInput(...)
 	local arg = {...}
 	for i=1, #arg do
-		assert(getmetatable(arg[i]) == getmetatable(Panel.new(RoReplicateEnum.Panel.Custom)), "SectionClass:AddPanel - parameter "..i.." is not a PanelClass")
+		assert(getmetatable(arg[i]) == getmetatable(Input.new(Input.Enum.Custom)), "SectionClass:AddInput - parameter "..i.." is not a InputClass")
 		arg[i]:GetFrame().Parent = nil
-		table.remove(self._panels, table.find(self._panels, arg[i]))
+		table.remove(self._inputs, table.find(self._inputs, arg[i]))
 	end
 end
 
@@ -102,11 +102,11 @@ end
 
 
 --[[
-- Returns an array of panels for script manipulation elsewhere
-- @return _panels - PanelClass array
+- Returns an array of inputs for script manipulation elsewhere
+- @return _inputs - InputClass array
 --]]
-function SectionClass:GetPanels()
-	return self._panels
+function SectionClass:GetInputs()
+	return self._inputs
 end
 
 
@@ -137,9 +137,9 @@ end
 --]]
 function SectionClass:_UpdateSize()
 	local total = UDim2.new(0,0,0,0)
-	local fluff = 4*(#self._panels - 1)
-	for i=1, #self._panels do
-		total += self._panels[i]:GetFrame().Size
+	local fluff = 4*(#self._inputs - 1)
+	for i=1, #self._inputs do
+		total += self._inputs[i]:GetFrame().Size
 	end
 	
 	self._frame.Size = UDim2.new(0,total.X.Offset+fluff+8,1,0)

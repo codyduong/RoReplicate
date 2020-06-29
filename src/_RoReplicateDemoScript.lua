@@ -3,11 +3,11 @@ local RoReplicate = script.Parent
 local RoReplicateBase = require(RoReplicate.RoReplicateBase)
 local RoReplicateUtility = require(RoReplicate.RoReplicateUtility)
 local Section = require(RoReplicate.Section)
-local Panel = require(RoReplicate.Panel)
+local Input = require(RoReplicate.Input)
 
 --https://developer.roblox.com/en-us/api-reference/datatype/DockWidgetPluginGuiInfo
 local pluginInfo = DockWidgetPluginGuiInfo.new(
-	Enum.InitialDockState.Float,  -- Widget will be initialized in floating panel
+	Enum.InitialDockState.Float,  -- Widget will be initialized in floating input
 	true,   -- Widget will be initially enabled
 	true  -- Don't override the previous enabled state
 )
@@ -20,12 +20,12 @@ local section_1 = Section.new("1", "Section 1", roPlugin)
 local section_2 = Section.new("2", "Section 2", roPlugin)
 --roPlugin:AddSections(section_1, section_2) --This parents it to the BaseClass
 
-local s1_panel_1 = Panel.new(Panel.Enum.ButtonImage, section_1)
-local s1_panel_2 = Panel.new(Panel.Enum.ButtonImage, section_1)
---section_1:AddPanels(s1_panel_1, s1_panel_2) --This parents it to the BaseClass
+local s1_input_1 = Input.new(Input.Enum.ButtonImage, section_1)
+local s1_input_2 = Input.new(Input.Enum.ButtonImage, section_1)
+--section_1:AddInputs(s1_input_1, s1_input_2) --This parents it to the BaseClass
 
 for i=1, 4 do
-	local panel = Panel.new(Panel.Enum.ButtonImage, section_2)
+	local input = Input.new(Input.Enum.ButtonImage, section_2)
 end
 
 
