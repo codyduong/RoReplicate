@@ -1,17 +1,17 @@
 local RoReplicateUtility = require(script.Parent.RoReplicateUtility)
 
 
-PanelClass = {}
-PanelClass.__index = PanelClass
+InputClass = {}
+InputClass.__index = InputClass
 
 
 --[[
-- Creates a new panel
-- @param tuple - PanelType (tuple varies from paneltype to paneltype)
+- Creates a new input
+- @param tuple - InputType (tuple varies from inputtype to inputtype)
 --]]
-function PanelClass.new(enum, Section)
+function InputClass.new(enum, Section)
 	local self = {}
-	setmetatable(self, PanelClass)
+	setmetatable(self, InputClass)
 	
 	local frame = Instance.new("Frame")
 	frame.BackgroundTransparency = 0
@@ -22,7 +22,7 @@ function PanelClass.new(enum, Section)
 	
 	pcall(
 		function()
-			Section:AddPanels(self)
+			Section:AddInputs(self)
 		end
 	)
 	
@@ -31,29 +31,29 @@ end
 
 
 --[[
-- Returns the frame of the panel for local script manipulation
+- Returns the frame of the input for local script manipulation
 - @return frame - Frame Instance
 --]]
-function PanelClass:GetFrame()
+function InputClass:GetFrame()
 	return self._frame
 end
 
 
 --[[
-- Sets the frame of the panel from any local script manipulation
+- Sets the frame of the input from any local script manipulation
 --]]
-function PanelClass:SetFrame(frame)
-	assert(getmetatable(frame) == getmetatable(Instance.new("Frame")), "PanelClass:SetFrame - tried to SetFrame to something that is not a Frame Instance")
+function InputClass:SetFrame(frame)
+	assert(getmetatable(frame) == getmetatable(Instance.new("Frame")), "InputClass:SetFrame - tried to SetFrame to something that is not a Frame Instance")
 	self._frame = frame
 end
 
 
-PanelClass.Enum = {}
+InputClass.Enum = {}
 
 --[[
 - TODO
 --]]
-function PanelClass:_CheckEnum(enum)
+function InputClass:_CheckEnum(enum)
 	if not pcall(
 		function()
 			enum.new(self._frame)
@@ -63,23 +63,23 @@ function PanelClass:_CheckEnum(enum)
 end
 
 
-PanelClass.Enum.CustomInput = {}
-PanelClass.Enum.CustomInput.__index = {}
+InputClass.Enum.CustomInput = {}
+InputClass.Enum.CustomInput.__index = {}
 
-function PanelClass.Enum.CustomInput.new(gui)
+function InputClass.Enum.CustomInput.new(gui)
 	local self = {}
-	setmetatable(self, PanelClass.Enum.ButtonImage)
+	setmetatable(self, InputClass.Enum.ButtonImage)
 	
 	return self
 end
 
 
-PanelClass.Enum.ButtonImage = {}
-PanelClass.Enum.ButtonImage.__index = {}
+InputClass.Enum.ButtonImage = {}
+InputClass.Enum.ButtonImage.__index = {}
 
-function PanelClass.Enum.ButtonImage.new(gui)
+function InputClass.Enum.ButtonImage.new(gui)
 	local self = {}
-	setmetatable(self, PanelClass.Enum.ButtonImage)
+	setmetatable(self, InputClass.Enum.ButtonImage)
 	
 	local frame = Instance.new("Frame", gui)
 	frame.BackgroundTransparency = 1
@@ -117,4 +117,4 @@ function PanelClass.Enum.ButtonImage.new(gui)
 end
 
 
-return PanelClass
+return InputClass
