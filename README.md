@@ -1,4 +1,4 @@
-# RoReplicate 0.2.10 (PROJECT ON HOLD UNTIL FURTHER NOTICE)
+# RoReplicate 0.2.10
 A set of ModuleScripts for utilization in easier plugin creation, which blends in with the default Roblox Studio look. StudioWidgets is planned to be incorportated for ease of use (Rather than say, developing some classes yourself ontop of RoReplicate to achieve the desired look/functionality).
 
 ## Overview
@@ -45,3 +45,6 @@ for i = 1, #json do
 end
 ```
 3. Disable HTTP Requests (This is highly recommended if you aren't using ```HttpService``` in your own scripts, as malicious scripts  can utilize this to inject their own code.)
+
+## Usage
+RoReplicate is free to use and modify for your own developmental purposes as long it is properly attributed to this repository, Cody-Duong, or some deriative form of the former two. Currently there is no documentation to support using RoReplicate, as it is still in development.
