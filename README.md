@@ -47,4 +47,4 @@ end
 3. Disable HTTP Requests (This is highly recommended if you aren't using ```HttpService``` in your own scripts, as malicious scripts  can utilize this to inject their own code.)
 
 ## Usage
-RoReplicate is free to use and modify for your own developmental purposes as long it is properly attributed to this repository, Cody-Duong, or some deriative form of the former two. Currently there is sparse documentation to support using RoReplicate, as it is still in development. It is possible, however to utilize this unfinished product in some forms, with a demo script utilzing RoReplicate [here!](https://github.com/Cody-Duong/RoReplicate/blob/master/src/_RoReplicateDemoScript.lua)
+RoReplicate is free to use and modify for your own developmental purposes as long it is properly attributed to this repository, codyduong, or some deriative form of the former two. Currently there is sparse documentation to support using RoReplicate, as it is still in development. It is possible, however to utilize this unfinished product in some forms, with a demo script utilzing RoReplicate [here!](https://github.com/Cody-Duong/RoReplicate/blob/master/src/_RoReplicateDemoScript.lua)
