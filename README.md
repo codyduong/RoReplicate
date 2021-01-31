@@ -1,4 +1,6 @@
 # RoReplicate 0.2.10
+This repository is no longer being updated, as Roblox standardizes plugin look, and implements new features that make this not needed.
+
 A set of ModuleScripts for utilization in easier plugin creation, which blends in with the default Roblox Studio look. StudioWidgets is planned to be incorportated for ease of use (Rather than say, developing some classes yourself ontop of RoReplicate to achieve the desired look/functionality).
 
 ## Overview
@@ -25,7 +27,7 @@ Install through the following steps:
 2. Paste the following command in your commandbar, it will replicate this Repo's src into your game.Workspace
 ```lua
 local http = game:GetService("HttpService")
-local req = http:GetAsync("https://api.github.com/repos/Cody-Duong/RoReplicate/contents/src")
+local req = http:GetAsync("https://api.github.com/repos/codyduong/RoReplicate/contents/src")
 local json = http:JSONDecode(req)
 
 local targetFolder = Instance.new("Folder")
